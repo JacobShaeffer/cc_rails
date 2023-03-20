@@ -8,6 +8,8 @@ class MetadataTypesController < ApplicationController
 
   # GET /metadata_types/1 or /metadata_types/1.json
   def show
+    @metadata_type = MetadataType.find(params[:id])
+    @metadata = @metadata_type.metadata
   end
 
   # GET /metadata_types/new
