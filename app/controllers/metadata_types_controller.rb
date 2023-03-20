@@ -27,7 +27,7 @@ class MetadataTypesController < ApplicationController
 
     respond_to do |format|
       if @metadata_type.save
-        format.html { redirect_to metadata_type_url(@metadata_type), notice: "Metadata type was successfully created." }
+        format.html { redirect_to metadata_types_path, notice: "Metadata type was successfully created." }
         format.json { render :show, status: :created, location: @metadata_type }
       else
         format.html { render :new, status: :unprocessable_entity }

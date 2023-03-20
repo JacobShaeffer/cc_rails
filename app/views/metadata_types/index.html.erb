@@ -1,14 +1,31 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Metadata types</h1>
-
-<div id="metadata_types">
-  <% @metadata_types.each do |metadata_type| %>
-    <%= render metadata_type %>
-    <p>
-      <%= link_to "Show this metadata type", metadata_type %>
-    </p>
-  <% end %>
+<div class='row'>
+  <div class="col">
+    <div class="btn btn-primary my-3">
+      <%= link_to "ADD TYPE", new_metadata_type_path, :class => 'btn' %>
+    </div>
+  </div>
 </div>
 
-<%= link_to "New metadata type", new_metadata_type_path %>
+<div class='row'>
+  <div class="col">
+    <div class="accordion" id="accordionExample">
+      <% @metadata_types.each do |metadata_type| %>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="heading<%= metadata_type.id %>">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= metadata_type.id %>" aria-expanded="false" aria-controls="collapse<%= metadata_type.id %>">
+              <%= metadata_type.name %>
+            </button>
+          </h2>
+          <div id="collapse<%= metadata_type.id %>" class="accordion-collapse collapse" aria-labelledby="heading<%= metadata_type.id %>">
+            <div class="accordion-body">
+              <%= render metadata_type %>
+              <p>
+                <%= link_to "Show this metadata type", metadata_type %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
