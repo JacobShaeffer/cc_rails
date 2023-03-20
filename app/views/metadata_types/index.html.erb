@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Metadata types</h1>
+
+<div id="metadata_types">
+  <% @metadata_types.each do |metadata_type| %>
+    <%= render metadata_type %>
+    <p>
+      <%= link_to "Show this metadata type", metadata_type %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New metadata type", new_metadata_type_path %>

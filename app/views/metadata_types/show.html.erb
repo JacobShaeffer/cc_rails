@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @metadata_type %>
+
+<div>
+  <%= link_to "Edit this metadata type", edit_metadata_type_path(@metadata_type) %> |
+  <%= link_to "Back to metadata types", metadata_types_path %>
+
+  <%= button_to "Destroy this metadata type", @metadata_type, method: :delete %>
+</div>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Metadata</h1>
+
+<div id="metadata">
+  <% @metadata.each do |metadatum| %>
+    <%= render metadatum %>
+    <p>
+      <%= link_to "Show this metadatum", metadatum %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New metadatum", new_metadatum_path %>
