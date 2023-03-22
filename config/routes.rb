@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :metadata_types do
-    resources :metadata, except: [:index], controller: 'metadata_types/metadata'
+    resources :metadata, except: [:index, :show], controller: 'metadata_types/metadata'
   end
 
   get 'home/about'

@@ -1,15 +1,6 @@
 class MetadataTypes::MetadataController < ApplicationController
   before_action :set_metadatum, only: %i[ show edit update destroy ]
 
-  # GET /metadata or /metadata.json
-  def index
-    @metadata = Metadatum.all
-  end
-
-  # GET /metadata/1 or /metadata/1.json
-  def show
-  end
-
   # GET /metadata/new
   def new
     @metadata_type = MetadataType.find(params[:metadata_type_id])
@@ -18,6 +9,8 @@ class MetadataTypes::MetadataController < ApplicationController
 
   # GET /metadata/1/edit
   def edit
+    @metadata_type = MetadataType.find(params[:metadata_type_id])
+    @metadatum = Metadatum.find(params[:id])
   end
 
   # POST /metadata or /metadata.json
@@ -41,7 +34,7 @@ class MetadataTypes::MetadataController < ApplicationController
   def update
     respond_to do |format|
       if @metadatum.update(metadatum_params)
-        format.html { redirect_to metadatum_url(@metadatum), notice: "Metadatum was successfully updated." }
+        format.html { redirect_to metadata_types_path, notice: "Metadatum was successfully updated." }
         format.json { render :show, status: :ok, location: @metadatum }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -59,7 +52,7 @@ class MetadataTypes::MetadataController < ApplicationController
 
     if @metadatum.destroy
       flash[:notice] = "\"#{title}\" was deleted successfully."
-      redirect_to @metadata_type
+      redirect_to metadata_types_path
     else
       flash.now[:alert] = "There was an error deleting the metadatum."
       render :show

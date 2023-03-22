@@ -1,12 +1,15 @@
-<div id="<%= dom_id metadatum %>">
+<!--<div id="<%#= dom_id metadatum %>">
   <p>
     <strong>Name:</strong>
-    <%= metadatum.name %>
-  </p>
+    <strong>Name:</strong>-->
+    <%#= metadatum.name %>
+<!--  </p>
 
-  <p>
-    <strong>Metadata type:</strong>
-    <%= metadatum.metadata_type_id %>
-  </p>
-
-</div>
+</div>-->
+<tr id="<%= dom_id metadatum %>">
+  <td><%= metadatum.name %></td>
+  <td>
+    <%= link_to "Edit", edit_metadata_type_metadatum_path(metadatum.metadata_type, metadatum), :class => 'btn btn-primary' %>
+    <%= button_to "Delete", metadata_type_metadatum_path(metadatum.metadata_type, metadatum), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
+  </td>
+</tr>

@@ -18,10 +18,20 @@
           </h2>
           <div id="collapse<%= metadata_type.id %>" class="accordion-collapse collapse" aria-labelledby="heading<%= metadata_type.id %>">
             <div class="accordion-body">
-              <%= render metadata_type %>
-              <p>
-                <%= link_to "Show this metadata type", metadata_type %>
-              </p>
+              <table  class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Metadata Name</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% metadata_type.metadata.each do |metadatum| %>
+                    <%= render "metadata_types/metadata/metadatum", metadatum: metadatum %>
+                  <% end %>
+                </tbody>
+              </table>
+              <%= link_to "ADD METADATA", new_metadata_type_metadatum_path(metadata_type), :class => 'btn btn-primary' %>
             </div>
           </div>
         </div>
