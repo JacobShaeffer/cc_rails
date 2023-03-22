@@ -34,7 +34,7 @@ class MetadataTypes::MetadataController < ApplicationController
   def update
     respond_to do |format|
       if @metadatum.update(metadatum_params)
-        format.html { redirect_to metadata_types_path, notice: "Metadatum was successfully updated." }
+        format.html { redirect_to metadata_type_path(@metadatum.metadata_type_id), notice: "Metadatum was successfully updated." }
         format.json { render :show, status: :ok, location: @metadatum }
       else
         format.html { render :edit, status: :unprocessable_entity }

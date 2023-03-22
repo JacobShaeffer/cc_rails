@@ -8,34 +8,24 @@
 
 <div class='row'>
   <div class="col">
-    <div class="accordion" id="accordionExample">
-      <% @metadata_types.each do |metadata_type| %>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="heading<%= metadata_type.id %>">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= metadata_type.id %>" aria-expanded="false" aria-controls="collapse<%= metadata_type.id %>">
-              <%= metadata_type.name %>
-            </button>
-          </h2>
-          <div id="collapse<%= metadata_type.id %>" class="accordion-collapse collapse" aria-labelledby="heading<%= metadata_type.id %>">
-            <div class="accordion-body">
-              <table  class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Metadata Name</th>
-                    <th scope="col">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% metadata_type.metadata.each do |metadatum| %>
-                    <%= render "metadata_types/metadata/metadatum", metadatum: metadatum %>
-                  <% end %>
-                </tbody>
-              </table>
-              <%= link_to "ADD METADATA", new_metadata_type_metadatum_path(metadata_type), :class => 'btn btn-primary' %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Metadata Type</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @metadata_types.each do |metadata_type| %>
+          <tr>
+            <td><%= link_to metadata_type.name, metadata_type_path(metadata_type.id) %></td>
+            <td>
+              <%= link_to "Edit", edit_metadata_type_path(metadata_type), :class => 'btn btn-primary' %>
+              <%= link_to "Delete", metadata_type, method: :delete, data: {confirm: "Are you sure?"}, :class => 'btn btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

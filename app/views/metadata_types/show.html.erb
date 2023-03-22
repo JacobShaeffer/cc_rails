@@ -2,28 +2,22 @@
 <%= render @metadata_type %>
 
 <div>
-  <table>
+  <%= link_to "ADD METADATA", new_metadata_type_metadatum_path(@metadata_type.id), :class => 'btn btn-primary' %>
+  <table  class="table">
     <thead>
       <tr>
-        <th>Metadata Name</th>
-        <th>Actions</th>
+        <th scope="col">Metadata Name</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       <% @metadata.each do |metadatum| %>
-        <tr>
-          <td><%= metadatum.name %></td>
-          <!--td><%= link_to "Delete", [@metadata_type, metadatum], method: :delete, confirm: "Are you sure?" %></td-->
-          <td><%= button_to "Delete", [@metadata_type, metadatum], method: :delete, form: {data: {turbo_confirm: "Are you sure you want to delete \"#{metadatum.name}\"?"}} %></td>
-        </tr>
+        <%= render "metadata_types/metadata/metadatum", metadatum: metadatum %>
       <% end %>
     </tbody>
   </table>
 </div>
 
-<div>
-  <%= link_to "New metadata", new_metadata_type_metadatum_path(@metadata_type) %>
-</div>
 <div>
   <%= link_to "Edit this metadata type", edit_metadata_type_path(@metadata_type) %> |
   <%= link_to "Back to metadata types", metadata_types_path %>
