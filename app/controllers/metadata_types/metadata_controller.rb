@@ -1,21 +1,18 @@
 class MetadataTypes::MetadataController < ApplicationController
-  before_action :set_metadatum, only: %i[ show edit update destroy ]
+  before_action :set_metadatum, only: %i[ edit update destroy ]
+  before_action :set_metadata_type, only: %i[ new edit create destory ]
 
   # GET /metadata/new
   def new
-    @metadata_type = MetadataType.find(params[:metadata_type_id])
     @metadatum = Metadatum.new
   end
 
   # GET /metadata/1/edit
   def edit
-    @metadata_type = MetadataType.find(params[:metadata_type_id])
-    @metadatum = Metadatum.find(params[:id])
   end
 
   # POST /metadata or /metadata.json
   def create
-    @metadata_type = MetadataType.find(params[:metadata_type_id])
     @metadatum = Metadatum.new(metadatum_params)
     @metadatum.metadata_type = @metadata_type
 
@@ -46,13 +43,11 @@ class MetadataTypes::MetadataController < ApplicationController
   # DELETE /metadata/1 or /metadata/1.json
   def destroy
     print("destroying metadatum")
-    @metadata_type = MetadataType.find(params[:metadata_type_id])
-    @metadatum = Metadatum.find(params[:id])
     title = @metadatum.name
 
     if @metadatum.destroy
       flash[:notice] = "\"#{title}\" was deleted successfully."
-      redirect_to metadata_types_path
+      redirect_to metadata_type_path(params[:metadata_type_id])
     else
       flash.now[:alert] = "There was an error deleting the metadatum."
       render :show
@@ -63,6 +58,10 @@ class MetadataTypes::MetadataController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_metadatum
       @metadatum = Metadatum.find(params[:id])
+    end
+
+    def set_metadata_type
+      @metadata_type = MetadataType.find(params[:metadata_type_id])
     end
 
     # Only allow a list of trusted parameters through.
