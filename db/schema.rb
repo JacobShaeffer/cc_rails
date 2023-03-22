@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_22_002324) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_22_220721) do
+  create_table "content_metadata", force: :cascade do |t|
+    t.integer "content_id"
+    t.integer "metadatum_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "contents", force: :cascade do |t|
     t.string "title"
     t.integer "user_id", null: false

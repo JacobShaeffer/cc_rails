@@ -13,10 +13,12 @@ class ContentsController < ApplicationController
   # GET /contents/new
   def new
     @content = Content.new
+    @metadata_types = MetadataType.all
   end
 
   # GET /contents/1/edit
   def edit
+    @metadata_types = MetadataType.all
   end
 
   # POST /contents or /contents.json
@@ -65,6 +67,6 @@ class ContentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def content_params
-      params.require(:content).permit(:title, :file)
+      params.require(:content).permit(:title, :file, metadatum_ids: [])
     end
 end

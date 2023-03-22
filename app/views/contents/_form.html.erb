@@ -1,10 +1,10 @@
-<%= form_with(model: content) do |form| %>
-  <% if content.errors.any? %>
+<%= form_for [@metadata_type, @content] do |form| %>
+  <% if @content.errors.any? %>
 		<div style="color: red">
-			<h2><%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:</h2>
+			<h2><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h2>
 
 			<ul>
-				<% content.errors.each do |error| %>
+				<% @content.errors.each do |error| %>
 					<li><%= error.full_message %></li>
 				<% end %>
 			</ul>
@@ -20,6 +20,20 @@
 		<%= form.label :file, style: "display: block" %>
 		<%= form.file_field :file %>
   </div>
+
+	<div>
+		<% @metadata_types.each do |metadata_type| %>
+			<%= metadata_type.name %>
+			<br>
+			<% metadata_type.metadata.each do |metadatum| %>
+				<input type="checkbox" name="content[metadatum_ids][]" id="content_metadatum_ids_<%= metadatum.id %>" value="<%= metadatum.id %>">
+				<%= metadatum.name %>
+				<br>
+			<% end %>
+			<br>
+		<% end %>
+	</div>
+
 
   <div>
 		<%= form.submit %>
