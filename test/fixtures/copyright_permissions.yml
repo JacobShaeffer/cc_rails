@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  organization: one
+  granted: false
+  date_contacted: 2023-03-23
+  date_of_response: 2023-03-23
+  user: one
+
+two:
+  description: MyText
+  organization: two
+  granted: false
+  date_contacted: 2023-03-23
+  date_of_response: 2023-03-23
+  user: two

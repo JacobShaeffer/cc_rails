@@ -22,6 +22,10 @@
   </div>
 
 	<div>
+		<%= form.collection_select(:copyright_permission_id, @copyright_permissions, :id, :description, prompt: true) %>
+	</div>
+
+	<div>
 		<% @metadata_types.each do |metadata_type| %>
 			<%= metadata_type.name %>
 			<br>

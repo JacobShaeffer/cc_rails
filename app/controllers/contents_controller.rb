@@ -14,6 +14,7 @@ class ContentsController < ApplicationController
   def new
     @content = Content.new
     @metadata_types = MetadataType.all
+    @copyright_permissions = CopyrightPermission.all
   end
 
   # GET /contents/1/edit
