@@ -18,7 +18,7 @@
 
   <div>
 		<%= form.label :file, style: "display: block" %>
-		<%= form.file_field :file %>
+		<%= form.file_field :file, onchange: "validateContentFile(this)" %>
   </div>
 
 	<div>
