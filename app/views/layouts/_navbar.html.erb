@@ -19,7 +19,7 @@
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 				<% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'Profile', user_registration_path, class: 'nav-link ' + (current_controller?('devise') ? 'active' : '') %>
+            <%= link_to 'Profile', edit_user_registration_path, class: 'nav-link ' + (current_controller?('devise') ? 'active' : '') %>
           </li>
 					<li class="nav-item">
 						<%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-secondary' %>
