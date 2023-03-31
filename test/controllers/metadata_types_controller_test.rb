@@ -20,7 +20,7 @@ class MetadataTypesControllerTest < ActionDispatch::IntegrationTest
       post metadata_types_url, params: { metadata_type: { name: @metadata_type.name } }
     end
 
-    assert_redirected_to metadata_type_url(MetadataType.last)
+    assert_redirected_to metadata_types_url
   end
 
   test "should show metadata_type" do
