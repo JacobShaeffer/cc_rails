@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_23_194335) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_23_192403) do
   create_table "content_metadata", force: :cascade do |t|
     t.integer "content_id"
     t.integer "metadatum_id"
@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_194335) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
-    t.integer "copyright_permission_id", null: false
+    t.integer "copyright_permission_id"
     t.index ["copyright_permission_id"], name: "index_contents_on_copyright_permission_id"
     t.index ["user_id"], name: "index_contents_on_user_id"
   end

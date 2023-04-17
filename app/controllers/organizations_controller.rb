@@ -40,6 +40,9 @@ class OrganizationsController < ApplicationController
 
   # DELETE /organizations/1 or /organizations/1.json
   def destroy
+    # TODO: test deleting an organization with associated copyright permissions
+    # With and without the following
+    @organization.copyright_permissions.clear
     @organization.destroy
 
     respond_to do |format|
