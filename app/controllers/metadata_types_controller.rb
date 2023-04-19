@@ -38,6 +38,7 @@ class MetadataTypesController < ApplicationController
 
   # PATCH/PUT /metadata_types/1 or /metadata_types/1.json
   def update
+    authorize @metadata_type
     respond_to do |format|
       if @metadata_type.update(metadata_type_params)
         format.html { redirect_to metadata_type_url(@metadata_type), notice: "Metadata type was successfully updated." }
