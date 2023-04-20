@@ -55,13 +55,8 @@ gem 'rails_admin', '~> 3.1', '>= 3.1.2'
 # Use Sass to process CSS
 gem "sassc-rails"
 
-gem 'bootstrap', '~> 5.2', '>= 5.2.3'
-
 # jquery
 gem 'jquery-rails', '~> 4.5', '>= 4.5.1'
-
-# user authorization
-gem "pundit", "~> 2.3"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -89,4 +84,3 @@ group :test do
   gem "webdrivers"
 end
 gem "cssbundling-rails"
-

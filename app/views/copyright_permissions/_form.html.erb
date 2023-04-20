@@ -15,36 +15,26 @@
     <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description %>
   </div>
-  <br>
-
 
   <div>
     <%= form.label :organization_id, style: "display: block" %>
-    <%#= form.text_field :organization_id %>
-    <%= form.collection_select(:organization_id, @organizations, :id, :name, prompt: true) %>
+    <%= form.text_field :organization_id %>
   </div>
-  <br>
 
   <div>
     <%= form.label :granted, style: "display: block" %>
     <%= form.check_box :granted %>
   </div>
-  <br>
-
 
   <div>
     <%= form.label :date_contacted, style: "display: block" %>
     <%= form.date_field :date_contacted %>
   </div>
-  <br>
-
 
   <div>
     <%= form.label :date_of_response, style: "display: block" %>
     <%= form.date_field :date_of_response %>
   </div>
-  <br>
-
 
   <div>
     <%= form.submit %>

@@ -1,5 +1,5 @@
 <%= form_for [@metadata_type, @content] do |form| %>
-	<% if @content.errors.any? %>
+  <% if @content.errors.any? %>
 		<div style="color: red">
 			<h2><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h2>
 
@@ -9,73 +9,38 @@
 				<% end %>
 			</ul>
 		</div>
-	<% end %>
+  <% end %>
+
+  <div>
+		<%= form.label :title, style: "display: block" %>
+		<%= form.text_field :title %>
+  </div>
+
+  <div>
+		<%= form.label :file, style: "display: block" %>
+		<%= form.file_field :file, onchange: "validateContentFile(this)" %>
+  </div>
 
 	<div>
-			<%= form.label :title, style: "display: block" %>
-			<%= form.text_field :title %>
-	</div>
-	<br>
-
-
-	<div>
-			<%= form.label :file, style: "display: block" %>
-			<%= form.file_field :file, onchange: "validateContentFile(this)" %>
-	</div>
-	<br>
-
-	<div>
-		<%= form.label :copyright_permission, style: "display: block" %>
 		<%= form.collection_select(:copyright_permission_id, @copyright_permissions, :id, :description, prompt: true) %>
 	</div>
-  <br>
 
 	<div>
 		<% @metadata_types.each do |metadata_type| %>
-			<%= form.label metadata_type.name, style: "display: block" %>
-			<div id="selected_<%= metadata_type.id %>" style="border: 1px solid green"></div>
-			<div id="unselected_<%= metadata_type.id %>" style="border: 1px solid black"></div>
-			<div id="actual_list_<%= metadata_type.id %>" style="border: 1px solid red;">
-				<% metadata_type.metadata.each do |metadatum| %>
-					<input type="checkbox" name="content[metadatum_ids][]" id="content_metadatum_ids_<%= metadatum.id %>" value="<%= metadatum.id %>">
-					<%= metadatum.name %>
-					<br>
-				<% end %>
-			</div>
+			<%= metadata_type.name %>
+			<br>
+			<% metadata_type.metadata.each do |metadatum| %>
+				<input type="checkbox" name="content[metadatum_ids][]" id="content_metadatum_ids_<%= metadatum.id %>" value="<%= metadatum.id %>">
+				<%= metadatum.name %>
+				<br>
+			<% end %>
 			<br>
 		<% end %>
 	</div>
 
 
-	<div>
+  <div>
 		<%= form.submit %>
-	</div>
+  </div>
 <% end %>
-
-<script>
-
-	function setUnselectedList(){
-		console.log("setUnselectedList");
-	}	
-
-	const j$ = jQuery.noConflict();
-
-	j$(document).ready(function(){
-		console.log("ready!");
-		setUnselectedList();
-	})
-
-	function validateContentFile(inputFile){
-			console.log(inputFile.value)
-			var errorMessage = "File extension not allowed."
-			var allowedExtensions = ['pdf', 'mp3', 'pm4'];
-
-			const fileExtension = inputFile.value.split('.').pop();
-			if (!allowedExtensions.includes(fileExtension)) {
-					alert(errorMessage);
-					$(inputFile).val('');
-			}
-	}
-	
-</script>
-<%#= javascript_include_tag "packs/content/test" %>
+<%= javascript_include_tag "packs/content/test" %>
